@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>COMING SOON!</title>
+<link rel="stylesheet" href="cdarch.css">
+</head>
+<body>
+<header>
+<h2>CD</h2><br>
+<h3>INTERIOR AND ARCHITECTURE</h3>
+<div class="main">
+<h1>COMING SOON</h1>
+<hr>
+<p id="launch"></p>
+</div>
+</header>
+<script>
+var count = new Date("Mar 31,2020");
+var x = setInterval(function() {
+var now = new Date().getTime();
+var distance = count - now;
+var days=Math.round(distance/(1000*60*60*24));
+var hours=Math.round((distance%(1000*60*60*24))/(1000*60*60));
+var minutes=Math.round((distance%(1000*60*60))/(1000*60));
+var seconds=Math.round((distance%(100*60))/1000);
+
+document.getElementById("launch").innerHTML=days+"d "+hours+"h "+minutes+"m "+seconds+"s ";
+
+if(distance<0){
+clearInterval(x);
+document.getElementById("launch").innerHTML="EXPIRED";
+}
+
+},1000);
+</script>
+</body>
+</html>
