@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - master
+      - enhanced-site
   workflow_dispatch:
 
 permissions:
