@@ -4,6 +4,9 @@
 Dockerfile
 render.yaml
 README-Docker.md
+node_modules
+dist
+.vite
 
 *.log
 *.tmp

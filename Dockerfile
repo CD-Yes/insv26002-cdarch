@@ -1,20 +1,24 @@
-FROM php:8.3-apache
+FROM node:22-alpine AS build
+
+WORKDIR /app
+
+ARG NODE_TLS_REJECT_UNAUTHORIZED=1
+ARG NPM_STRICT_SSL=true
+
+ENV NODE_TLS_REJECT_UNAUTHORIZED=${NODE_TLS_REJECT_UNAUTHORIZED}
+ENV npm_config_strict_ssl=${NPM_STRICT_SSL}
+
+COPY package.json package-lock.json ./
+RUN npm ci --fetch-retries=1 && test -x node_modules/.bin/vite
+
+COPY . .
+RUN npm run build
+
+FROM nginx:1.27-alpine
 
 ENV PORT=10000
 
-WORKDIR /var/www/html
-
-COPY docker/apache/ports.conf /etc/apache2/ports.conf
-COPY docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
-
-COPY . /var/www/html/
-
-RUN a2enmod rewrite headers \
-    && rm -rf /var/www/html/docker \
-    && find /var/www/html -type d -exec chmod 755 {} \; \
-    && find /var/www/html -type f -exec chmod 644 {} \; \
-    && chown -R www-data:www-data /var/www/html
+COPY docker/nginx/default.conf.template /etc/nginx/templates/default.conf.template
+COPY --from=build /app/dist /usr/share/nginx/html
 
 EXPOSE 10000
-
-CMD ["apache2-foreground"]

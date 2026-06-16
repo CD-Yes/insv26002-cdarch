@@ -1,37 +1,38 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>COMING SOON!</title>
-<link rel="stylesheet" href="cdarch.css">
-</head>
-<body>
-<header>
-<h2>CD</h2><br>
-<h3>INTERIOR AND ARCHITECTURE</h3>
-<div class="main">
-<h1>COMING SOON</h1>
-<hr>
-<p id="launch"></p>
-</div>
-</header>
-<script>
-var count = new Date("Mar 31,2020");
-var x = setInterval(function() {
-var now = new Date().getTime();
-var distance = count - now;
-var days=Math.round(distance/(1000*60*60*24));
-var hours=Math.round((distance%(1000*60*60*24))/(1000*60*60));
-var minutes=Math.round((distance%(1000*60*60))/(1000*60));
-var seconds=Math.round((distance%(100*60))/1000);
-
-document.getElementById("launch").innerHTML=days+"d "+hours+"h "+minutes+"m "+seconds+"s ";
-
-if(distance<0){
-clearInterval(x);
-document.getElementById("launch").innerHTML="EXPIRED";
-}
-
-},1000);
-</script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Concept & Design Architecture-Interior provides architecture, construction, interior design, and elevation solutions in Erode."
+    />
+    <title>Concept & Design Architecture-Interior</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900%7CPoppins:100,200,300,400,500,600,700,800"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/vendor/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="/vendor/animate/animate.min.css" />
+    <link rel="stylesheet" href="/vendor/simple-line-icons/css/simple-line-icons.min.css" />
+    <link rel="stylesheet" href="/vendor/linear-icons/css/linear-icons.min.css" />
+    <link rel="stylesheet" href="/vendor/owl.carousel/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="/vendor/owl.carousel/assets/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="/vendor/magnific-popup/magnific-popup.min.css" />
+    <link rel="stylesheet" href="/css/theme.css" />
+    <link rel="stylesheet" href="/css/theme-elements.css" />
+    <link rel="stylesheet" href="/vendor/rs-plugin/css/settings.css" />
+    <link rel="stylesheet" href="/vendor/rs-plugin/css/layers.css" />
+    <link rel="stylesheet" href="/vendor/rs-plugin/css/navigation.css" />
+    <link rel="stylesheet" href="/css/skins/default.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+    <script src="/vendor/modernizr/modernizr.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

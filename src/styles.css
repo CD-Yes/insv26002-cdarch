@@ -1,0 +1,63 @@
+#root {
+  min-height: 100vh;
+}
+
+.contact-form-replica .form-control {
+  min-height: 48px;
+  border-radius: 0;
+  border: 1px solid #ddd;
+  box-shadow: none;
+}
+
+.contact-form-replica textarea.form-control {
+  min-height: 150px;
+}
+
+.contact-form-replica .form-control:focus {
+  border-color: #f7941d;
+  box-shadow: 0 0 0 0.15rem rgba(247, 148, 29, 0.15);
+}
+
+.footer a[href^="mailto:"],
+.footer a[href^="tel:"] {
+  color: inherit;
+}
+
+.cd-icon-replaced {
+  display: inline-flex;
+  width: 1em;
+  height: 1em;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  vertical-align: -0.125em;
+  color: inherit;
+}
+
+.cd-icon-replaced svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cd-icon-replaced svg.cd-icon-solid {
+  fill: currentColor;
+  stroke: none;
+}
+
+.image-frame-action-icon .cd-icon-replaced {
+  width: 18px;
+  height: 18px;
+}
+
+.cd-icon-image-replacement {
+  width: 42px;
+  height: 42px;
+  font-size: 42px;
+  color: #2388ed;
+}
