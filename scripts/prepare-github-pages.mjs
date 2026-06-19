@@ -6,11 +6,6 @@ const root = process.cwd();
 const dist = join(root, 'dist');
 const docs = join(root, 'docs');
 const indexHtml = join(dist, 'index.html');
-const appHtml = join(dist, 'app.html');
-
-if (existsSync(appHtml)) {
-  await copyFile(appHtml, indexHtml);
-}
 
 if (!existsSync(indexHtml)) {
   throw new Error('dist/index.html is missing. Run vite build before preparing GitHub Pages files.');
