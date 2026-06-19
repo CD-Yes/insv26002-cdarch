@@ -1,9 +1,9 @@
 import { useEffect, useMemo } from 'react';
-import indexPage from '../index.php?raw';
-import aboutPage from '../about.php?raw';
-import interiorPage from '../interior.php?raw';
-import constructionPage from '../construction.php?raw';
-import galleryPage from '../gallery.php?raw';
+import indexPage from '../php-backup/index.php?raw';
+import aboutPage from '../php-backup/about.php?raw';
+import interiorPage from '../php-backup/interior.php?raw';
+import constructionPage from '../php-backup/construction.php?raw';
+import galleryPage from '../php-backup/gallery.php?raw';
 import './styles.css';
 
 const business = {
@@ -15,59 +15,31 @@ const business = {
 };
 
 const legacyScripts = [
-  'vendor/jquery/jquery.min.js',
-  'vendor/jquery.appear/jquery.appear.min.js',
-  'vendor/jquery.easing/jquery.easing.min.js',
-  'vendor/bootstrap/js/bootstrap.bundle.min.js',
-  'vendor/common/common.min.js',
-  'vendor/jquery.validation/jquery.validate.min.js',
-  'vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js',
-  'vendor/jquery.gmap/jquery.gmap.min.js',
-  'vendor/jquery.lazyload/jquery.lazyload.min.js',
-  'vendor/isotope/jquery.isotope.min.js',
-  'vendor/owl.carousel/owl.carousel.min.js',
-  'vendor/magnific-popup/jquery.magnific-popup.min.js',
-  'vendor/vide/jquery.vide.min.js',
-  'vendor/vivus/vivus.min.js',
-  'js/theme.js',
-  'vendor/rs-plugin/js/jquery.themepunch.tools.min.js',
-  'vendor/rs-plugin/js/jquery.themepunch.revolution.min.js',
-  'js/custom.js',
-  'js/theme.init.js',
-  'js/examples/examples.portfolio.js'
+  '/vendor/jquery/jquery.min.js',
+  '/vendor/jquery.appear/jquery.appear.min.js',
+  '/vendor/jquery.easing/jquery.easing.min.js',
+  '/vendor/bootstrap/js/bootstrap.bundle.min.js',
+  '/vendor/common/common.min.js',
+  '/vendor/jquery.validation/jquery.validate.min.js',
+  '/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js',
+  '/vendor/jquery.gmap/jquery.gmap.min.js',
+  '/vendor/jquery.lazyload/jquery.lazyload.min.js',
+  '/vendor/isotope/jquery.isotope.min.js',
+  '/vendor/owl.carousel/owl.carousel.min.js',
+  '/vendor/magnific-popup/jquery.magnific-popup.min.js',
+  '/vendor/vide/jquery.vide.min.js',
+  '/vendor/vivus/vivus.min.js',
+  '/js/theme.js',
+  '/vendor/rs-plugin/js/jquery.themepunch.tools.min.js',
+  '/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js',
+  '/js/custom.js',
+  '/js/theme.init.js',
+  '/js/examples/examples.portfolio.js'
 ];
 
 const replacementMap = {
   'tel:+1234567890': 'tel:+919626660910',
-  'href="" class="link-color-light11"': 'href="mailto:info@cdarch.in" class="link-color-light11"',
-  'href="../../img/logo-small.png"': 'href="img/logo-small-light.png"',
-  'img/logo-small.png': 'img/logo-small-light.png',
-  'img/banner_home.jpg': 'img/Slider 4.jpg',
-  'img/logos/logo-2.png': 'img/logo-small-light.png',
-  'img/logos/logo-3.png': 'img/logo-small-light.png',
-  'img/logos/logo-5.png': 'img/logo-small-light.png',
-  'img/logos/logo-6.png': 'img/logo-small-light.png',
-  'img/logos/logo-7.png': 'img/logo-small-light.png',
-  'img/logos/logo-8.png': 'img/logo-small-light.png',
-  'img/logos/logo-9.png': 'img/logo-small-light.png',
-  'img/logos/logo-7-light.png': 'img/logo-small-light.png',
-  'img/logos/logo-8-light.png': 'img/logo-small-light.png',
-  'img/logos/logo-24-light.png': 'img/logo-small-light.png',
-  'img/logos/logo-10-light.png': 'img/logo-small-light.png',
-  'img/logos/logo-11-light.png': 'img/logo-small-light.png',
-  'img/generic/generic-1.jpg': 'img/generic/generic-wide-1.jpg',
-  'img/generic/generic-2.jpg': 'img/generic/generic-wide-2.jpg',
-  'img/generic/generic-3.jpg': 'img/generic/generic-wide-3.jpg',
-  'img/projects/generic/project-21-wide.jpg': 'img/projects/generic/1.jpg',
-  'img/projects/generic/project-17-wide.jpg': 'img/projects/generic/2.jpg',
-  'img/parallax/parallax-4.jpg': 'img/Slider 2.jpg',
-  'img/authors/author-1.jpg': 'img/generic/01.jpg',
-  'img/authors/author-2.jpg': 'img/generic/generic-wide-1.jpg',
-  'img/authors/author-3.jpg': 'img/generic/generic-wide-2.jpg',
-  'img/authors/author-4.jpg': 'img/generic/generic-wide-3.jpg',
-  'img/authors/author-5.jpg': 'img/projects/generic/3.jpg',
-  'admin/content/upload/slider.png': 'admin/content/upload/construction2.png',
-  'admin/content/upload/baner.png': 'admin/content/upload/sli32.png'
+  'href="" class="link-color-light11"': 'href="mailto:info@cdarch.in" class="link-color-light11"'
 };
 
 const invalidGallerySources = [
@@ -327,58 +299,6 @@ function splitShell(pageMarkup) {
   };
 }
 
-function aboutMarkup() {
-  const { beforeMain, footer } = splitShell(indexPage);
-  return `${beforeMain}
-    <div role="main" class="main">
-      <section class="page-header parallax overlay overlay-show overlay-op-8 appear-animation" data-appear-animation="fadeIn" data-plugin-parallax data-plugin-options="{'speed': 1.5, 'parallaxHeight': '120%', 'offset': 60}" data-image-src="img/Slider 2.jpg">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-12 text-center">
-              <h1 class="font-weight-bold text-color-light text-9 mb-2">About Us</h1>
-              <p class="text-color-light mb-0">Concept & Design Architecture-Interior</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="section bg-light">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-6 mb-5 mb-lg-0">
-              <span class="top-sub-title text-color-primary">SINCE 2002</span>
-              <h2 class="font-weight-extra-bold line-height-1 mb-3">Architecture, Interiors and Construction Solutions</h2>
-              <p class="text-3 mb-4" style="text-align: justify;">Founded in 2002, Concept & Design Architecture-Interior provides one stop construction, architecture and interior solutions in Erode and nearby cities.</p>
-              <p class="text-3 mb-4" style="text-align: justify;">Our talented multidisciplinary team of architects, interior designers and project managers provides personalized service to suit each client's budget, timescale, requirements and taste.</p>
-              <a href="contact.html" class="btn btn-outline btn-rounded btn-primary btn-v-3 btn-h-4 font-weight-bold text-0">CONTACT US</a>
-            </div>
-            <div class="col-lg-6">
-              <img src="img/generic/generic-wide-1.jpg" class="img-fluid box-shadow-5" alt="Architecture interior project">
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="section">
-        <div class="container">
-          <div class="row text-center">
-            <div class="col-md-4 mb-5 mb-md-0">
-              <h2 class="text-4">DESIGN</h2>
-              <p>Layout, space planning, material direction and style decisions shaped around the client's budget and requirements.</p>
-            </div>
-            <div class="col-md-4 mb-5 mb-md-0">
-              <h2 class="text-4">BUILD</h2>
-              <p>Construction and execution coordination with practical site-ready details and finish selections.</p>
-            </div>
-            <div class="col-md-4">
-              <h2 class="text-4">LIVE</h2>
-              <p>Homes and workspaces planned for comfort, durability, storage and daily use.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  ${footer}`;
-}
-
 function contactMarkup() {
   const { beforeMain, footer } = splitShell(indexPage);
   return `${beforeMain}
@@ -444,7 +364,7 @@ function pageForPath(pathname) {
   const route = routeName(pathname);
 
   if (route === 'about' || route === 'about.php' || route === 'about.html') {
-    return { html: aboutMarkup(), title: titles.about };
+    return { html: fixedMarkup(aboutPage), title: titles.about };
   }
 
   if (route === 'interior' || route === 'interior.php' || route === 'interior.html') {

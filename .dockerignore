@@ -1,12 +1,18 @@
 .git
 .gitignore
 .dockerignore
-Dockerfile
-render.yaml
 README-Docker.md
 node_modules
 dist
 .vite
+src
+public
+scripts
+.github
+package.json
+package-lock.json
+vite.config.js
+index.html
 
 *.log
 *.tmp

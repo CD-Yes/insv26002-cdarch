@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: cdarch
+    name: cdarch-php-backup
     runtime: docker
     dockerfilePath: ./Dockerfile
     dockerContext: .
