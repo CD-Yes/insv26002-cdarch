@@ -7,11 +7,11 @@ import galleryPage from '../php-backup/gallery.php?raw';
 import './styles.css';
 
 const business = {
-  phonePrimary: '+91 96266 60910',
-  phoneSecondary: '+91 98651 43167',
+  phonePrimary: '+91 93638 67315',
+  // phoneSecondary: '+91 98651 43167',
   emailPrimary: 'info@cdarch.in',
   emailSecondary: 'cd.gopal12@gmail.com',
-  address: '16/1, Kumarasamy Street (WD -43) Near Maya Bazaar Restaurant, Erode-638001'
+  address: '33/13 Concept and Design, Amman hall compound, Surampatti valasu, Pavadai street, Erode-638009'
 };
 
 const legacyScripts = [
