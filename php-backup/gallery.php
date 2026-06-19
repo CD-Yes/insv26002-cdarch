@@ -876,8 +876,8 @@ html.alternative-style-1 .top-sub-title {
 <div class="col-lg-3 text-left text-lg-left mb-5 mb-lg-0">
 <h4 class="font-weight-bold text-4-5 pb-1 mb-3">Get In Touch</h4>
 <ul class="list list-unstyled" style="text-align:justify;">
-<li class="text-color-light11 pb-1 mb-2"><span class="d-block font-weight-semibold line-height-1 text-color-grey">ADDRESS</span>16/1,Kumarasamy Street (WD -43) Near Maya Bazaar Restaurant, Erode-638001</li>
-<li class="text-color-light11 pb-1 mb-2"><span class="d-block font-weight-semibold line-height-1 text-color-grey">PHONE</span> <a href="tel:+919626660910" class="link-color-light11">+91 96266 60910, +91 98651 43167 </a></li>
+<li class="text-color-light11 pb-1 mb-2"><span class="d-block font-weight-semibold line-height-1 text-color-grey">ADDRESS</span>33/13 Concept and Design, Amman hall compound, Surampatti valasu, Pavadai street, Erode-638009</li>
+<li class="text-color-light11 pb-1 mb-2"><span class="d-block font-weight-semibold line-height-1 text-color-grey">PHONE</span> <a href="tel:+919363867315" class="link-color-light11">+91 93638 67315 </a></li>
 <li class="text-color-light11 pb-1 mb-2"><span class="d-block font-weight-semibold line-height-1 text-color-grey">EMAIL</span> <a href="" class="link-color-light11"><span class="__cf_email__" data-cfemail="">info@cdarch.in<br>cd.gopal12@gmail.com</span></a></li>
 <!--<li class="text-color-light pb-1 mb-2"><span class="d-block font-weight-semibold line-height-1 text-color-grey">WORKING DAYS/HOURS</span> Mon - Sat / 9:00AM - 8:00PM</li>
 </ul>
