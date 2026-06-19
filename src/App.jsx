@@ -59,12 +59,12 @@ const missingLinearIcons = {
 };
 
 const internalRouteMap = {
-  'index.php': 'index.html',
-  'about.php': 'about.html',
-  'interior.php': 'interior.html',
-  'construction.php': 'construction.html',
-  'gallery.php': 'gallery.html',
-  'contact.php': 'contact.html'
+  'index.php': '/index.html',
+  'about.php': '/about.html',
+  'interior.php': '/interior.html',
+  'construction.php': '/construction.html',
+  'gallery.php': '/gallery.html',
+  'contact.php': '/contact.html'
 };
 
 const titles = {
@@ -93,8 +93,44 @@ function rewriteInternalRoutes(markup) {
   });
 
   return output
-    .replace(/href="interior_content\.php\?name=\d+"/g, 'href="gallery.html"')
-    .replace(/href="content_construction\.php\?name=\d+"/g, 'href="gallery.html"');
+    .replace(/href=("|\')(index|about|interior|construction|gallery|contact)\.html/g, 'href=$1/$2.html')
+    .replace(/href="interior_content\.php\?name=\d+"/g, 'href="/gallery.html"')
+    .replace(/href="content_construction\.php\?name=\d+"/g, 'href="/gallery.html"');
+}
+
+function normalizeAssetUrls(markup) {
+  const assetRoots = [
+    'admin/',
+    'css/',
+    'img/',
+    'js/',
+    'master/',
+    'vendor/',
+    '.well-known/',
+    'ads.txt',
+    'favicon.ico'
+  ];
+
+  return markup.replace(
+    /\b(src|href|poster|data-src|data-image-src|data-change-src)=("|\')([^"\']+)\2/gi,
+    (match, attribute, quote, value) => {
+      if (
+        value.startsWith('/') ||
+        value.startsWith('#') ||
+        value.startsWith('data:') ||
+        /^[a-z][a-z0-9+.-]*:/i.test(value)
+      ) {
+        return match;
+      }
+
+      const cleanValue = value.replace(/^\.\//, '');
+      if (!assetRoots.some((root) => cleanValue.startsWith(root))) {
+        return match;
+      }
+
+      return `${attribute}=${quote}/${cleanValue}${quote}`;
+    }
+  );
 }
 
 function escapeRegExp(value) {
@@ -274,7 +310,7 @@ function fixedMarkup(markup) {
     output = output.split(from).join(to);
   });
 
-  return applyIconFallbacks(rewriteInternalRoutes(output));
+  return normalizeAssetUrls(applyIconFallbacks(rewriteInternalRoutes(output)));
 }
 
 function galleryMarkup() {
@@ -303,7 +339,7 @@ function contactMarkup() {
   const { beforeMain, footer } = splitShell(indexPage);
   return `${beforeMain}
     <div role="main" class="main">
-      <section class="page-header parallax overlay overlay-show overlay-op-8 appear-animation" data-appear-animation="fadeIn" data-plugin-parallax data-plugin-options="{'speed': 1.5, 'parallaxHeight': '120%', 'offset': 60}" data-image-src="img/Slider 1.jpg">
+      <section class="page-header parallax overlay overlay-show overlay-op-8 appear-animation" data-appear-animation="fadeIn" data-plugin-parallax data-plugin-options="{'speed': 1.5, 'parallaxHeight': '120%', 'offset': 60}" data-image-src="/img/Slider 1.jpg">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-md-12 text-center">
