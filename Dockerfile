@@ -1,20 +1,13 @@
-FROM php:8.3-apache
+FROM php:8.2-apache
 
 ENV PORT=10000
 
-WORKDIR /var/www/html
+RUN sed -ri 's/Listen 80/Listen 10000/' /etc/apache2/ports.conf \
+  && sed -ri 's/<VirtualHost \*:80>/<VirtualHost *:10000>/' /etc/apache2/sites-available/000-default.conf \
+  && a2enmod rewrite headers
 
-COPY docker/apache/ports.conf /etc/apache2/ports.conf
-COPY docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY php-backup/ /var/www/html/
 
-COPY . /var/www/html/
-
-RUN a2enmod rewrite headers \
-    && rm -rf /var/www/html/docker \
-    && find /var/www/html -type d -exec chmod 755 {} \; \
-    && find /var/www/html -type f -exec chmod 644 {} \; \
-    && chown -R www-data:www-data /var/www/html
+RUN printf 'ok\n' > /var/www/html/healthz
 
 EXPOSE 10000
-
-CMD ["apache2-foreground"]

@@ -1,10 +1,10 @@
 services:
   - type: web
-    name: cdarch
+    name: cdarch-php-backup
     runtime: docker
     dockerfilePath: ./Dockerfile
     dockerContext: .
-    healthCheckPath: /
+    healthCheckPath: /healthz
     envVars:
       - key: PORT
         value: 10000
