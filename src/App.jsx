@@ -42,6 +42,16 @@ const replacementMap = {
   'href="" class="link-color-light11"': 'href="mailto:info@cdarch.in" class="link-color-light11"'
 };
 
+const assetFallbackMap = {
+  'img/logo-small.png': 'img/logo-small-light.png',
+  'admin/content/upload/baner.png': 'admin/content/upload/sli32.png',
+  'admin/content/upload/slider.png': 'admin/content/upload/construction2.png'
+};
+
+const omittedAssetRefs = new Set([
+  'img/banner_home.jpg'
+]);
+
 const invalidGallerySources = [
   'admin/content/upload/upp.php',
   'admin/content/upload/wso.php',
@@ -124,11 +134,16 @@ function normalizeAssetUrls(markup) {
       }
 
       const cleanValue = value.replace(/^\.\//, '');
-      if (!assetRoots.some((root) => cleanValue.startsWith(root))) {
+      if (omittedAssetRefs.has(cleanValue)) {
+        return '';
+      }
+
+      const resolvedValue = assetFallbackMap[cleanValue] || cleanValue;
+      if (!assetRoots.some((root) => resolvedValue.startsWith(root))) {
         return match;
       }
 
-      return `${attribute}=${quote}/${cleanValue}${quote}`;
+      return `${attribute}=${quote}/${resolvedValue}${quote}`;
     }
   );
 }
