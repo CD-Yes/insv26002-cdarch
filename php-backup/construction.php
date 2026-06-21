@@ -934,9 +934,9 @@ html.alternative-style-1 .top-sub-title {
                     <div class="row text-center text-md-left align-items-center">
           
             <div class="col-md-5 col-lg-6"> 
-            <p class="text-md-left pb-0 mb-0" style="color:white;">Design and Developed by Ulix Technology.</p>
+            <p class="text-md-left pb-0 mb-0" style="color:white;">Enchanted by <a class="text-md-left pb-0 mb-0" style="color:white;" href="https://kalytrex.com">KalyTrex</a></p>
                         </div>              <div class="col-md-7 col-lg-6">
-                                <p class="text-md-right pb-0 mb-0" style="color:white;">CONCEPT & DESIGN ARCHITECTURE-INTERIOR. © 2022. All Rights Reserved</p>
+                                <p class="text-md-right pb-0 mb-0" style="color:white;">CONCEPT & DESIGN ARCHITECTURE-INTERIOR. © 2026. All Rights Reserved</p>
                                 </div>  
                                 </div>
                                 </div>          </div>

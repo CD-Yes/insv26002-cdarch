@@ -418,7 +418,7 @@ function contactMarkup(indexMarkup) {
               <span class="top-sub-title text-color-primary">GET IN TOUCH</span>
               <h2 class="font-weight-extra-bold line-height-1 mb-4">Concept & Design Architecture-Interior</h2>
               <ul class="list list-unstyled">
-                <li class="mb-3"><span class="d-block font-weight-semibold text-color-dark">PHONE</span><a href="tel:+919363867315">+91 93638 67315</a>, <a href="tel:+919865143167">+91 98651 43167</a></li>
+                <li class="mb-3"><span class="d-block font-weight-semibold text-color-dark">PHONE</span><a href="tel:+919363867315">+91 93638 67315</a></li>
                 <li class="mb-3"><span class="d-block font-weight-semibold text-color-dark">EMAIL</span><a href="mailto:info@cdarch.in">info@cdarch.in</a><br><a href="mailto:cd.gopal12@gmail.com">cd.gopal12@gmail.com</a></li>
                 <li class="mb-3"><span class="d-block font-weight-semibold text-color-dark">ADDRESS</span>${business.address}</li>
               </ul>
