@@ -2,6 +2,16 @@
   min-height: 100vh;
 }
 
+.cd-page-loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Montserrat, Arial, sans-serif;
+  font-size: 14px;
+  color: #6c6d6e;
+}
+
 .contact-form-replica .form-control {
   min-height: 48px;
   border-radius: 0;
