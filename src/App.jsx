@@ -1,9 +1,4 @@
-import { useEffect, useMemo } from 'react';
-import indexPage from '../php-backup/index.php?raw';
-import aboutPage from '../php-backup/about.php?raw';
-import interiorPage from '../php-backup/interior.php?raw';
-import constructionPage from '../php-backup/construction.php?raw';
-import galleryPage from '../php-backup/gallery.php?raw';
+import { useEffect, useState } from 'react';
 import './styles.css';
 
 const business = {
@@ -14,32 +9,72 @@ const business = {
   address: '33/13 Concept and Design, Amman hall compound, Surampatti valasu, Pavadai street, Erode-638009'
 };
 
-const legacyScripts = [
+const pageLoaders = {
+  home: () => import('../php-backup/index.php?raw'),
+  about: () => import('../php-backup/about.php?raw'),
+  interior: () => import('../php-backup/interior.php?raw'),
+  construction: () => import('../php-backup/construction.php?raw'),
+  gallery: () => import('../php-backup/gallery.php?raw')
+};
+
+const pageMarkupCache = new Map();
+
+const baseLegacyScripts = [
   '/vendor/jquery/jquery.min.js',
   '/vendor/jquery.appear/jquery.appear.min.js',
   '/vendor/jquery.easing/jquery.easing.min.js',
   '/vendor/bootstrap/js/bootstrap.bundle.min.js',
   '/vendor/common/common.min.js',
-  '/vendor/jquery.validation/jquery.validate.min.js',
-  '/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js',
-  '/vendor/jquery.gmap/jquery.gmap.min.js',
   '/vendor/jquery.lazyload/jquery.lazyload.min.js',
-  '/vendor/isotope/jquery.isotope.min.js',
-  '/vendor/owl.carousel/owl.carousel.min.js',
-  '/vendor/magnific-popup/jquery.magnific-popup.min.js',
-  '/vendor/vide/jquery.vide.min.js',
-  '/vendor/vivus/vivus.min.js',
+  '/vendor/magnific-popup/jquery.magnific-popup.min.js'
+];
+
+const themeScripts = [
   '/js/theme.js',
-  '/vendor/rs-plugin/js/jquery.themepunch.tools.min.js',
-  '/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js',
   '/js/custom.js',
-  '/js/theme.init.js',
-  '/js/examples/examples.portfolio.js'
+  '/js/theme.init.js'
+];
+
+const featureLegacyScripts = [
+  {
+    pattern: /contact-form|contact-form-replica/i,
+    scripts: ['/vendor/jquery.validation/jquery.validate.min.js']
+  },
+  {
+    pattern: /easypiechart|easy-pie-chart|data-plugin-counter|class="counter"/i,
+    scripts: ['/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js']
+  },
+  {
+    pattern: /data-plugin-gmap|jquery\.gmap|google-map/i,
+    scripts: ['/vendor/jquery.gmap/jquery.gmap.min.js']
+  },
+  {
+    pattern: /sort-destination|isotope-item|portfolioLoadMore|data-sort-id/i,
+    scripts: ['/vendor/isotope/jquery.isotope.min.js', '/js/examples/examples.portfolio.js']
+  },
+  {
+    pattern: /owl-carousel|double-carousel/i,
+    scripts: ['/vendor/owl.carousel/owl.carousel.min.js']
+  },
+  {
+    pattern: /data-plugin-vide|jquery\.vide/i,
+    scripts: ['/vendor/vide/jquery.vide.min.js']
+  },
+  {
+    pattern: /data-plugin-vivus|vivus|svg-particles/i,
+    scripts: ['/vendor/vivus/vivus.min.js']
+  },
+  {
+    pattern: /rev_slider|revolutionSlider|data-plugin-revolution-slider/i,
+    scripts: [
+      '/vendor/rs-plugin/js/jquery.themepunch.tools.min.js',
+      '/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js'
+    ]
+  }
 ];
 
 const replacementMap = {
-  'tel:+1234567890': 'tel:+919626660910',
-  'href="" class="link-color-light11"': 'href="mailto:info@cdarch.in" class="link-color-light11"'
+  'tel:+1234567890': 'tel:+919363867315'
 };
 
 const assetFallbackMap = {
@@ -93,6 +128,15 @@ function bodyFromDocument(markup) {
 
 function removeScripts(markup) {
   return markup.replace(/<script\b[\s\S]*?<\/script>/gi, '');
+}
+
+async function loadPageSource(pageKey) {
+  if (!pageMarkupCache.has(pageKey)) {
+    const loadedPage = pageLoaders[pageKey]();
+    pageMarkupCache.set(pageKey, loadedPage.then((module) => module.default));
+  }
+
+  return pageMarkupCache.get(pageKey);
 }
 
 function rewriteInternalRoutes(markup) {
@@ -276,6 +320,13 @@ function applyIconFallbacks(markup) {
   return replaceMissingLinearIconImages(replaceIconFonts(markup));
 }
 
+function normalizeEmailLinks(markup) {
+  return markup.replace(
+    /href="https:\/\/www\.okler\.net\/cdn-cgi\/l\/email-protection#[^"]*"/g,
+    `href="mailto:${business.emailSecondary}"`
+  );
+}
+
 function replaceRuntimeIconFonts() {
   document.querySelectorAll('i.lnr, i.fas, i.fab, i.far, i.fa, i.icon').forEach((icon) => {
     const iconName = iconNameForClass(icon.className);
@@ -313,11 +364,7 @@ function removeGalleryInvalidItems(markup) {
 function fixedMarkup(markup) {
   let output = removeScripts(bodyFromDocument(markup));
 
-  output = output
-    .replace(
-      /href="https:\/\/www\.okler\.net\/cdn-cgi\/l\/email-protection#[^"]*"/g,
-      `href="mailto:${business.emailSecondary}"`
-    )
+  output = normalizeEmailLinks(output)
     .replace(/cd\.gopal12@gmail\.com/g, business.emailSecondary)
     .replace(/info@cdarch\.in/g, business.emailPrimary);
 
@@ -328,8 +375,8 @@ function fixedMarkup(markup) {
   return normalizeAssetUrls(applyIconFallbacks(rewriteInternalRoutes(output)));
 }
 
-function galleryMarkup() {
-  return fixedMarkup(removeGalleryInvalidItems(galleryPage));
+function galleryMarkup(markup) {
+  return fixedMarkup(removeGalleryInvalidItems(markup));
 }
 
 function routeName(pathname) {
@@ -350,8 +397,8 @@ function splitShell(pageMarkup) {
   };
 }
 
-function contactMarkup() {
-  const { beforeMain, footer } = splitShell(indexPage);
+function contactMarkup(indexMarkup) {
+  const { beforeMain, footer } = splitShell(indexMarkup);
   return `${beforeMain}
     <div role="main" class="main">
       <section class="page-header parallax overlay overlay-show overlay-op-8 appear-animation" data-appear-animation="fadeIn" data-plugin-parallax data-plugin-options="{'speed': 1.5, 'parallaxHeight': '120%', 'offset': 60}" data-image-src="/img/Slider 1.jpg">
@@ -371,7 +418,7 @@ function contactMarkup() {
               <span class="top-sub-title text-color-primary">GET IN TOUCH</span>
               <h2 class="font-weight-extra-bold line-height-1 mb-4">Concept & Design Architecture-Interior</h2>
               <ul class="list list-unstyled">
-                <li class="mb-3"><span class="d-block font-weight-semibold text-color-dark">PHONE</span><a href="tel:+919626660910">+91 96266 60910</a>, <a href="tel:+919865143167">+91 98651 43167</a></li>
+                <li class="mb-3"><span class="d-block font-weight-semibold text-color-dark">PHONE</span><a href="tel:+919363867315">+91 93638 67315</a>, <a href="tel:+919865143167">+91 98651 43167</a></li>
                 <li class="mb-3"><span class="d-block font-weight-semibold text-color-dark">EMAIL</span><a href="mailto:info@cdarch.in">info@cdarch.in</a><br><a href="mailto:cd.gopal12@gmail.com">cd.gopal12@gmail.com</a></li>
                 <li class="mb-3"><span class="d-block font-weight-semibold text-color-dark">ADDRESS</span>${business.address}</li>
               </ul>
@@ -411,30 +458,64 @@ function contactMarkup() {
   ${footer}`;
 }
 
-function pageForPath(pathname) {
+function routeKeyForPath(pathname) {
   const route = routeName(pathname);
 
   if (route === 'about' || route === 'about.php' || route === 'about.html') {
-    return { html: fixedMarkup(aboutPage), title: titles.about };
+    return 'about';
   }
 
   if (route === 'interior' || route === 'interior.php' || route === 'interior.html') {
-    return { html: fixedMarkup(interiorPage), title: titles.interior };
+    return 'interior';
   }
 
   if (route === 'construction' || route === 'construction.php' || route === 'construction.html') {
-    return { html: fixedMarkup(constructionPage), title: titles.construction };
+    return 'construction';
   }
 
   if (route === 'gallery' || route === 'gallery.php' || route === 'gallery.html') {
-    return { html: galleryMarkup(), title: titles.gallery };
+    return 'gallery';
   }
 
   if (route === 'contact' || route === 'contact.php' || route === 'contact.html' || route === 'cpanel' || route === 'cpanel.html') {
-    return { html: contactMarkup(), title: titles.contact };
+    return 'contact';
   }
 
-  return { html: fixedMarkup(indexPage), title: titles.home };
+  return 'home';
+}
+
+function titleForRouteKey(routeKey) {
+  return titles[routeKey] || titles.home;
+}
+
+function scriptsForMarkup(markup) {
+  const scripts = [...baseLegacyScripts];
+
+  featureLegacyScripts.forEach(({ pattern, scripts: featureScripts }) => {
+    if (pattern.test(markup)) {
+      scripts.push(...featureScripts);
+    }
+  });
+
+  scripts.push(...themeScripts);
+
+  return [...new Set(scripts)];
+}
+
+async function pageForPath(pathname) {
+  const routeKey = routeKeyForPath(pathname);
+
+  if (routeKey === 'contact') {
+    const indexMarkup = await loadPageSource('home');
+    const html = contactMarkup(indexMarkup);
+
+    return { html, scripts: scriptsForMarkup(html), title: titles.contact };
+  }
+
+  const source = await loadPageSource(routeKey);
+  const html = routeKey === 'gallery' ? galleryMarkup(source) : fixedMarkup(source);
+
+  return { html, scripts: scriptsForMarkup(html), title: titleForRouteKey(routeKey) };
 }
 
 function loadScript(src) {
@@ -453,20 +534,53 @@ function loadScript(src) {
   });
 }
 
-async function loadLegacyScripts() {
-  for (const src of legacyScripts) {
+async function loadLegacyScripts(scripts) {
+  for (const src of scripts) {
     await loadScript(src);
   }
 }
 
 function App() {
-  const page = useMemo(() => pageForPath(window.location.pathname), []);
+  const [page, setPage] = useState(() => ({
+    html: '',
+    scripts: [],
+    title: titleForRouteKey(routeKeyForPath(window.location.pathname))
+  }));
+
+  useEffect(() => {
+    let cleanup = false;
+
+    pageForPath(window.location.pathname)
+      .then((loadedPage) => {
+        if (!cleanup) {
+          setPage(loadedPage);
+        }
+      })
+      .catch(() => {
+        if (!cleanup) {
+          setPage({
+            html: '<div class="cd-page-loading">Unable to load this page.</div>',
+            scripts: [],
+            title: titles.home
+          });
+        }
+      });
+
+    return () => {
+      cleanup = true;
+    };
+  }, []);
 
   useEffect(() => {
     document.title = page.title;
+
+    if (!page.html) {
+      return undefined;
+    }
+
     let cleanup = false;
 
-    loadLegacyScripts().then(() => {
+    loadLegacyScripts(page.scripts).then(() => {
       if (cleanup) {
         return;
       }
@@ -479,7 +593,11 @@ function App() {
     return () => {
       cleanup = true;
     };
-  }, [page.title]);
+  }, [page.html, page.scripts, page.title]);
+
+  if (!page.html) {
+    return <div className="cd-page-loading">Loading...</div>;
+  }
 
   return <div dangerouslySetInnerHTML={{ __html: page.html }} />;
 }

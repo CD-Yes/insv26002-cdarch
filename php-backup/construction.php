@@ -148,11 +148,11 @@ html.alternative-style-1 .top-sub-title {
 <ul class="list-infos">
 <li class="list-info-item-increase-size  d-lg-flex">
 <i class="lnr lnr-phone-handset text-color-primary font-weight-semibold mr-1 ph"></i>
-<a href="tel:+1234567890" class="text-color-primary"><strong class="mobile">+91 96266 60910</strong></a>
+<a href="tel:+919363867315" class="text-color-primary"><strong class="mobile">+91 93638 67315</strong></a>
 </li>&nbsp;
 <li class="list-info-item-increase-size  d-lg-flex mobi">
 <i class="lnr lnr-envelope text-color-primary font-weight-semibold mr-1 en"></i>
-<a href="https://www.okler.net/cdn-cgi/l/email-protection#1a7f777b73765a7e75777b737434797577"class="text-color-primary"  ><strong class="mobile"><!--<span class="__cf_email__" data-cfemail="87e2eae6eeebc7e3e8eae6eee9a9e4e8ea">[email&#160;protected]</span>-->cd.gopal12@gmail.com</strong></a>
+<a href="mailto:cd.gopal12@gmail.com" class="text-color-primary"  ><strong class="mobile">cd.gopal12@gmail.com</strong></a>
 </li>
 <!--<li class="list-info-item-increase-icon-size">
 <i class="icon icon-location-pin text-2 position-relative top-1 mr-1"></i>
@@ -918,7 +918,7 @@ html.alternative-style-1 .top-sub-title {
 <ul class="list list-unstyled" style="text-align:justify;">
 <li class="text-color-light11 pb-1 mb-2"><span class="d-block font-weight-semibold line-height-1 text-color-grey">ADDRESS</span>33/13 Concept and Design, Amman hall compound, Surampatti valasu, Pavadai street, Erode-638009</li>
 <li class="text-color-light11 pb-1 mb-2"><span class="d-block font-weight-semibold line-height-1 text-color-grey">PHONE</span> <a href="tel:+919363867315" class="link-color-light11">+91 93638 67315 </a></li>
-<li class="text-color-light11 pb-1 mb-2"><span class="d-block font-weight-semibold line-height-1 text-color-grey">EMAIL</span> <a href="" class="link-color-light11"><span class="__cf_email__" data-cfemail="">info@cdarch.in<br>cd.gopal12@gmail.com</span></a></li>
+<li class="text-color-light11 pb-1 mb-2"><span class="d-block font-weight-semibold line-height-1 text-color-grey">EMAIL</span> <a href="mailto:info@cdarch.in" class="link-color-light11">info@cdarch.in</a><br><a href="mailto:cd.gopal12@gmail.com" class="link-color-light11">cd.gopal12@gmail.com</a></li>
 <!--<li class="text-color-light pb-1 mb-2"><span class="d-block font-weight-semibold line-height-1 text-color-grey">WORKING DAYS/HOURS</span> Mon - Sat / 9:00AM - 8:00PM</li>
 </ul>
 <ul class="social-icons social-icons-icon-dark social-icons-lg">
