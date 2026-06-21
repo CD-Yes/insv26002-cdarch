@@ -1113,7 +1113,7 @@ Optimized Code
 <h4 class="font-weight-bold text-4-5 pb-1 mb-3">Get In Touch</h4>
 <ul class="list list-unstyled" style="text-align:justify;">
 <li class="text-color-light11 pb-1 mb-2"><span class="d-block font-weight-semibold line-height-1 text-color-grey">ADDRESS</span>16/1,Kumarasamy Street (WD -43) Near Maya Bazaar Restaurant, Erode-638001</li>
-<li class="text-color-light11 pb-1 mb-2"><span class="d-block font-weight-semibold line-height-1 text-color-grey">PHONE</span> <a href="tel:+919363867315" class="link-color-light11">+91 93638 67315, +91 98651 43167 </a></li>
+<li class="text-color-light11 pb-1 mb-2"><span class="d-block font-weight-semibold line-height-1 text-color-grey">PHONE</span> <a href="tel:+919363867315" class="link-color-light11">+91 93638 67315 </a></li>
 <li class="text-color-light11 pb-1 mb-2"><span class="d-block font-weight-semibold line-height-1 text-color-grey">EMAIL</span> <a href="mailto:info@cdarch.in" class="link-color-light11">info@cdarch.in</a><br><a href="mailto:cd.gopal12@gmail.com" class="link-color-light11">cd.gopal12@gmail.com</a></li>
 <!--<li class="text-color-light pb-1 mb-2"><span class="d-block font-weight-semibold line-height-1 text-color-grey">WORKING DAYS/HOURS</span> Mon - Sat / 9:00AM - 8:00PM</li>
 </ul>
