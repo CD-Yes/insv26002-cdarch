@@ -163,13 +163,13 @@ html.alternative-style-1 .top-sub-title {
 <div class="header-column justify-content-end">
 <ul class="header-top-social-icons social-icons social-icons-transparent social-icons-icon-dark social-icons-2 d-md-block">
 <li class="social-icons-instagram">
-<a href="https://www.instagram.com/" target="_blank" class="text-color-primary"  title="Instragram"><i class="fab fa-instagram"></i></a>
+<a href="https://www.instagram.com/conceptdesign.interiors/" target="_blank" class="text-color-primary"  title="Instragram"><i class="fab fa-instagram"></i></a>
 </li>
 <li class="social-icons-twitter">
 <a href="https://www.twitter.com/" target="_blank" class="text-color-primary"  title="Twitter"><i class="fab fa-twitter"></i></a>
 </li>
 <li class="social-icons-facebook">
-<a href="https://www.facebook.com/" target="_blank" class="text-color-primary"  title="Facebook"><i class="fab fa-facebook-f"></i></a>
+<a href="https://www.facebook.com/concept.gk/" target="_blank" class="text-color-primary"  title="Facebook"><i class="fab fa-facebook-f"></i></a>
 </li>
 </ul>
 <!--<a href="contact.php" class="btn btn-primary btn-3 font-weight-bold text-1 rounded-0 ml-3">CONTACT US</a>-->
@@ -429,9 +429,9 @@ html .bg-primary:not(.no-skin) {
 <!--<li class="text-color-light pb-1 mb-2"><span class="d-block font-weight-semibold line-height-1 text-color-grey">WORKING DAYS/HOURS</span> Mon - Sat / 9:00AM - 8:00PM</li>
 </ul>
 <ul class="social-icons social-icons-icon-dark social-icons-lg">
-<li class="social-icons-instagram"><a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+<li class="social-icons-instagram"><a href="https://www.instagram.com/conceptdesign.interiors/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
 <li class="social-icons-twitter mx-2"><a href="https://www.twitter.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-<li class="social-icons-facebook"><a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+<li class="social-icons-facebook"><a href="https://www.facebook.com/concept.gk/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
 --></ul>
 </div>
 </div>
